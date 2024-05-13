@@ -1,0 +1,126 @@
+
+
+<div class="container">
+  <div [hidden]="submitted">
+    <H1>Patient's Health Information</H1>
+   </div>
+
+  <br>
+
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm" name="myForm" >
+      
+      <div class="form-group">
+        <div><label for="allergies">Do you have allergies?</label></div>
+        <label>
+          <input type="radio" name="allergies" ng-model="allergies" value="true"  >
+          Yes
+        </label><br/>
+        
+        <label>
+          <input type="radio" name="allergies" ng-model="allergies" value="false">
+         No
+        </label>
+          
+        <br/>
+        <div>
+
+       </div>
+      
+      <div class="form-group">
+        <label for="gender">What is your gender?</label>
+        <select class="form-control" id="gender"
+                required
+                name="gender"
+                class="form-control"
+                  
+               >
+          <option  value="">Select..</option>   
+          <option  value="Male">Male</option>
+          <option  value="Female">Female</option>
+          <option  value="Other">Other</option>
+          
+        </select>
+        
+      </div>
+     
+    <div class="form-group">
+      <label for="status">What is your country of birth?</label>
+      <input
+      type="text"
+      id="country"
+      name="country"
+      class="form-control"
+      required
+      minlength="2"
+      appForbiddenName="bob"
+      [(ngModel)]="heroForm.name"
+      #name="ngModel"
+    />
+    
+    <div
+      *ngIf="name.invalid && (name.dirty || name.touched)"
+      class="alert"
+    >
+      <div *ngIf="name.errors?.['required']">Country is required.</div>
+      <div *ngIf="name.errors?.['minlength']">
+        Name must be at least 2 characters long.
+      </div>
+      <div *ngIf="name.errors?.['forbiddenName']">
+        Name cannot be Bob.
+      </div>
+    </div>
+
+    </div>
+    
+      <div class="form-group">
+        <label for="status">What is your marital status?</label>
+        <select class="form-control" id="status"
+                required
+            >
+            <option  value="">Select..</option>  
+          <option  value="Married">Married</option>
+          <option  value="Single">Single</option>
+          <option  value="Divorced">Divorced</option>
+          
+        </select>
+        
+      </div>
+      <div class="form-group">
+        <label for="smoke">Do you smoke?</label><bR>
+        <label>
+          <input type="radio" name="smoke" ng-model="color.name" value="true">
+          Yes
+        </label><br/>
+        
+        <label>
+          <input type="radio" name="smoke" ng-model="color.name" value="false">
+         No
+        </label><br/>
+      </div>
+      <div class="form-group">
+        <div><label for="alchohol">Do you drink alchohol?</label></div>
+        <label>
+          <input type="radio" name="alchohol"  ng-model="color.name" value="true">
+          Yes
+        </label><br/>
+        
+        <label>
+          <input type="radio" name="alchohol" ng-model="color.name" value="false">
+         No
+        </label><br/>
+      </div>
+      
+      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+      
+    
+    
+    <div>
+        
+    
+  </div>
+
+  <div *ngIf = "isShow">{{ lookups }}</div>
+  <button (click) = toggleDisplay()>View JSON Data</button>
+</div>
+
+</form>
