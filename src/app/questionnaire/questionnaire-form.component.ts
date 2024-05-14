@@ -16,8 +16,11 @@ export class questionnaireFormComponent {
       this.lookups = JSON.stringify(res);
     });
   } 
- 
- 
+  
+ options :any = [
+    {id: '1', value:'Yes'},
+    {id: '2', value:'No'}
+    ];
   genders :any = [
     {id: '1', value:'Male'},
     {id: '2', value:'Female'},
