@@ -33,12 +33,11 @@
                 name="gender"
                 class="form-control"
                   
-               >
-          <option  value="">Select..</option>   
-          <option  value="Male">Male</option>
-          <option  value="Female">Female</option>
-          <option  value="Other">Other</option>
-          
+               > 
+               <option  value="">Select..</option> 
+               <option *ngFor="let gen of genders let i = index" [value]="gen.value">
+                {{gen.value}} 
+               
         </select>
         
       </div>
@@ -78,24 +77,25 @@
                 required
             >
             <option  value="">Select..</option>  
-          <option  value="Married">Married</option>
-          <option  value="Single">Single</option>
-          <option  value="Divorced">Divorced</option>
-          
-        </select>
+            <option *ngFor="let ms of martialStatus let i = index" [value]="ms.value">
+              {{ms.value}} 
+             
+      </select>
+   
         
       </div>
-      <div class="form-group">
+      <div class="form-group" >
         <label for="smoke">Do you smoke?</label><bR>
         <label>
-          <input type="radio" name="smoke" ng-model="color.name" value="true">
+          <input type="radio" name="smoke"  value="true" >
           Yes
         </label><br/>
         
         <label>
-          <input type="radio" name="smoke" ng-model="color.name" value="false">
+          <input type="radio" name="smoke"     value="false">
          No
         </label><br/>
+        <span  *ngIf= "name.dirty && name.invalid">Smorking should be selected</span>
       </div>
       <div class="form-group">
         <div><label for="alchohol">Do you drink alchohol?</label></div>
@@ -108,6 +108,7 @@
           <input type="radio" name="alchohol" ng-model="color.name" value="false">
          No
         </label><br/>
+     
       </div>
       
       <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
