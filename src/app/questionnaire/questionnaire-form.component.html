@@ -9,22 +9,19 @@
 
   <form (ngSubmit)="onSubmit()" #heroForm="ngForm" name="myForm" >
       
-      <div class="form-group">
-        <div><label for="allergies">Do you have allergies?</label></div>
-        <label>
-          <input type="radio" name="allergies" ng-model="allergies" value="true"  >
-          Yes
-        </label><br/>
-        
-        <label>
-          <input type="radio" name="allergies" ng-model="allergies" value="false">
-         No
-        </label>
-          
-        <br/>
-        <div>
-
-       </div>
+<div>
+       <div class="form-group">
+        <label for="allergies">Do you have allergies?</label><br>
+      <label *ngFor="let opt of options;">
+        <input
+          type="radio"
+          id="allergies"
+          name="allergies"
+          [value]="opt.value"
+        />
+        {{opt.value}}
+      </label>
+      </div>
       
       <div class="form-group">
         <label for="gender">What is your gender?</label>
@@ -87,31 +84,31 @@
    
         
       </div>
-      <div class="form-group" >
-        <label for="smoke">Do you smoke?</label><bR>
-        <label>
-          <input type="radio" name="smoke"  value="true" >
-          Yes
-        </label><br/>
-        
-        <label>
-          <input type="radio" name="smoke"     value="false">
-         No
-        </label><br/>
-        <span  *ngIf= "name.dirty && name.invalid">Smorking should be selected</span>
-      </div>
+    
       <div class="form-group">
-        <div><label for="alchohol">Do you drink alchohol?</label></div>
-        <label>
-          <input type="radio" name="alchohol"  ng-model="color.name" value="true">
-          Yes
-        </label><br/>
-        
-        <label>
-          <input type="radio" name="alchohol" ng-model="color.name" value="false">
-         No
-        </label><br/>
-     
+        <label for="alchohol">Do you smoke?</label><br>
+      <label *ngFor="let opt of options;">
+        <input
+          type="radio"
+          id="smoke"
+          name="smoke"
+          [value]="opt.value"
+        />
+        {{opt.value}}
+      </label>
+      </div>
+
+      <div class="form-group">
+        <label for="alchohol">Do you drink alchohol?</label><br>
+      <label *ngFor="let opt of options;">
+        <input
+          type="radio"
+          id="alchohol"
+          name="alchohol"
+          [value]="opt.value"
+        />
+        {{opt.value}}
+      </label>
       </div>
       
       <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
