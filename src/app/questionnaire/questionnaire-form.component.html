@@ -1,127 +1,110 @@
-
-
 <div class="container">
   <div [hidden]="submitted">
     <H1>Patient's Health Information</H1>
-   </div>
+  </div>
 
   <br>
 
-  <form (ngSubmit)="onSubmit()" #heroForm="ngForm" name="myForm" >
-      
-<div>
-       <div class="form-group">
-        <label for="allergies">Do you have allergies?</label><br>
+  <form (ngSubmit)="onSubmit()" #heroForm="ngForm" (submit)="submitForm(heroForm)" novalidate>
+
+    <div class="form-group">
+      <label for="allergies">Do you have allergies?</label><br>
       <label *ngFor="let opt of options;">
-        <input
-          type="radio"
-          id="allergies"
-          name="allergies"
-          [value]="opt.value"
-        />
+        <input type="radio" id="allergies" name="allergies" [value]="opt.value" ngModel required />
         {{opt.value}}
       </label>
+      <div class="invalid-feedback" *ngIf="isSubmitted && heroForm.invalid">
+        <p>Please select either value</p>
       </div>
-      
-      <div class="form-group">
-        <label for="gender">What is your gender?</label>
-        <select class="form-control" id="gender"
-                required
-                name="gender"
-                class="form-control"
-                  
-               > 
-               <option  value="">Select..</option> 
-               <option *ngFor="let gen of genders let i = index" [value]="gen.value">
-                {{gen.value}} 
-               
-        </select>
-        
-      </div>
-     <div class="form-group">
-      <label for="gender">What is your date of birth?</label>
-      <input type = "text" id = "datepicker-1">
-     </div>
+    </div>
+
     <div class="form-group">
-      <label for="status">What is your country of birth?</label>
-      <input
-      type="text"
-      id="country"
-      name="country"
+      <label for="gender">What is your gender?</label>
+      <select class="form-control" id="gender" required name="gender" ngModel required>
+        <option value="">Select..</option>
+        <option *ngFor="let gen of genders let i = index" [value]="gen.value">
+          {{gen.value}}
+
+      </select>
+      <div class="invalid-feedback" *ngIf="isSubmitted && heroForm.invalid">
+        <p>Please select either value</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="datepicker-1">What is your date of birth?</label>
+      <input type="text" id="datepicker-1">
+    </div>
+    <!--
+     <div class="form-group">
+      <label for="datepicker-1">What is your date of birth?</label>
+      <input 
+      type = "text"  
+      id = "datepicker-1"
+      name="datepicker-1" 
       class="form-control"
       required
-      minlength="2"
-      appForbiddenName="bob"
       [(ngModel)]="heroForm.name"
-      #name="ngModel"
-    />
-    
-    <div
-      *ngIf="name.invalid && (name.dirty || name.touched)"
+      #name1="ngModel"
+      />
+      <div
+      *ngIf="name1.invalid && (name1.dirty || name1.touched)"
       class="alert"
     >
-      <div *ngIf="name.errors?.['required']">Country is required.</div>
-      <div *ngIf="name.errors?.['minlength']">
-        Name must be at least 2 characters long.
-      </div>
-      <div *ngIf="name.errors?.['forbiddenName']">
-        Name cannot be Bob.
-      </div>
+      <div *ngIf="name1.errors?.['required']">Date of birth is required.</div>
+     
     </div>
 
     </div>
-    
-      <div class="form-group">
-        <label for="status">What is your marital status?</label>
-        <select class="form-control" id="status"
-                required
-            >
-            <option  value="">Select..</option>  
-            <option *ngFor="let ms of martialStatus let i = index" [value]="ms.value">
-              {{ms.value}} 
-             
+    -->
+    <div class="form-group">
+      <label for="country">What is your country of birth?</label>
+      <input type="text" id="country" name="country" class="form-control" required minlength="2" appForbiddenName="bob"
+        [(ngModel)]="heroForm.name" #name="ngModel" />
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+        <div *ngIf="name.errors?.['required']">Country is required.</div>
+        <div *ngIf="name.errors?.['minlength']">
+          Name must be at least 2 characters long.
+        </div>
+        <div *ngIf="name.errors?.['forbiddenName']">
+          Name cannot be Bob.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="status">What is your marital status?</label>
+      <select class="form-control" id="status" required name="status" ngModel required>
+        <option value="">Select..</option>
+        <option *ngFor="let ms of martialStatus let i = index" [value]="ms.value">
+          {{ms.value}}
       </select>
-   
-        
+      <div class="invalid-feedback" *ngIf="isSubmitted && heroForm.invalid">
+        <p>Please select either value</p>
       </div>
-    
-      <div class="form-group">
-        <label for="alchohol">Do you smoke?</label><br>
+    </div>
+    <div class="form-group">
+      <label for="smoke">Do you smoke?</label><br>
       <label *ngFor="let opt of options;">
-        <input
-          type="radio"
-          id="smoke"
-          name="smoke"
-          [value]="opt.value"
-        />
+        <input type="radio" id="smoke" name="smoke" [value]="opt.value" ngModel required />
         {{opt.value}}
       </label>
+      <div class="invalid-feedback" *ngIf="isSubmitted && heroForm.invalid">
+        <p>Please select either value</p>
       </div>
-
-      <div class="form-group">
-        <label for="alchohol">Do you drink alchohol?</label><br>
+    </div>
+    <div class="form-group">
+      <label for="alchohol">Do you drink alchohol?</label><br>
       <label *ngFor="let opt of options;">
-        <input
-          type="radio"
-          id="alchohol"
-          name="alchohol"
-          [value]="opt.value"
-        />
+        <input type="radio" id="alchohol" name="alchohol" [value]="opt.value" ngModel required />
         {{opt.value}}
       </label>
+      <div class="invalid-feedback" *ngIf="isSubmitted && heroForm.invalid">
+        <p>Please select either value</p>
       </div>
-      
-      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
-      
-    
-    
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
     <div>
-        
-    
-  </div>
+    </div>
+    <div *ngIf="isShow">{{ lookups }}</div>
+    <button (click)=toggleDisplay()>View JSON Data</button>
 
-  <div *ngIf = "isShow">{{ lookups }}</div>
-  <button (click) = toggleDisplay()>View JSON Data</button>
-</div>
-
-</form>
+  </form>

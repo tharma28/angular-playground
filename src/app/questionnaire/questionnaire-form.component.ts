@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Hero } from '../hero';
 import { DataService } from '../data.service';
-
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-hero-form',
   templateUrl: './questionnaire-form.component.html',
@@ -20,6 +20,7 @@ export class questionnaireFormComponent {
  options :any = [
     {id: '1', value:'Yes'},
     {id: '2', value:'No'}
+ 
     ];
   genders :any = [
     {id: '1', value:'Male'},
@@ -40,6 +41,17 @@ export class questionnaireFormComponent {
   toggleDisplay() {
     this.isShow = !this.isShow;
   }
+  isSubmitted = false;
+    /*########### Template Driven Form ###########*/
+    submitForm(form: NgForm) {
+      this.isSubmitted = true;
+      if(!form.valid) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  
 
   
 
